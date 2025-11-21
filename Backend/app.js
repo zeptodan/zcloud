@@ -2,15 +2,15 @@ import express from "express";
 import limiter from "express-rate-limiter"
 import helmet from "helmet"
 import cors from "cors"
-import HomeRouter from "./routes";
-import filerouter from "./routes/fileroutes";
-import authorization from "./middleware/auth";
+import HomeRouter from "./routes/index.js";
+import filerouter from "./routes/fileroutes.js";
+import authorization from "./middleware/auth.js";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
-import notfound from "./middleware/notfound";
-import folderrouter from "./routes/folderroutes";
-import sharerouter from "./routes/shareroutes";
-import errorhandler from "./middleware/errorhandler";
+import notfound from "./middleware/notfound.js";
+import folderrouter from "./routes/folderroutes.js";
+import sharerouter from "./routes/shareroutes.js";
+import errorhandler from "./middleware/errorhandler.js";
 dotenv.config();
 const app = express();
 app.use(express.json());
