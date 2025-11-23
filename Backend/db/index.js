@@ -7,6 +7,8 @@ const pool = new Pool({
         password:process.env.PASSWORD,
         port:process.env.DB_PORT,
     });
-export async function queryDB(query){
-    return await pool.query(query);
+
+export async function queryDB(query,params = []){
+    const results = await pool.query(query,params);
+    return results.rows;
 }
