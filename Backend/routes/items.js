@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { deleteItem,renameItem } from "../controllers/items";
+import { deleteItem,renameItem } from "../controllers/items.js";
 const itemrouter = Router();
 
 itemrouter.delete("/items/:id",deleteItem)

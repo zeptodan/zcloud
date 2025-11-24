@@ -23,7 +23,7 @@ async function renameItem(req,res){
         res.status(400).json({msg:"Missing name"})
     }
     try {
-        await queryDB("update table set name = $1 where userid = $2 and id = $3",[name,user.userid, id])
+        await queryDB("update items set name = $1 where userid = $2 and id = $3",[name,user.userid, id])
         res.status(200).json({msg:"Name updated successfully"})
     } catch (error) {
         if (error.code == "23505"){

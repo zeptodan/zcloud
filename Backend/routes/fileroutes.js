@@ -1,10 +1,9 @@
 import { Router } from "express";
+import { getFile,uploadFile } from "../controllers/files";
 
 const filerouter = Router();
 
-filerouter.get("files",()=>{})
-filerouter.post("files",()=>{})
-filerouter.delete("files",()=>{})
-filerouter.put("files",()=>{})
+filerouter.get("/files/:id",getFile)
+filerouter.post("/files/:parentid",uploadFile)
 
 export default filerouter;

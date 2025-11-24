@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getFolder, createFolder } from "../controllers/folders";
+import { getFolder, createFolder } from "../controllers/folders.js";
 
 const folderrouter = Router();
 
