@@ -1,4 +1,4 @@
-import { queryDB } from "../db";
+import { queryDB } from "../db/index.js";
 async function getFile(){
 
 }
