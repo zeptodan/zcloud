@@ -11,6 +11,7 @@ import notfound from "./middleware/notfound.js";
 import folderrouter from "./routes/folderroutes.js";
 import sharerouter from "./routes/shareroutes.js";
 import errorhandler from "./middleware/errorhandler.js";
+import itemrouter from "./routes/items.js";
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
@@ -21,6 +22,7 @@ app.use(helmet());
 // ))
 
 app.use("/api",HomeRouter);
+app.use("/api",authorization,itemrouter);
 app.use("/api",authorization,filerouter);
 app.use("/api",authorization,folderrouter);
 app.use("/api",authorization,sharerouter);
