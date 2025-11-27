@@ -12,6 +12,9 @@ async function getFolder(req,res){
 async function createFolder(req,res){
     const user = req.user
     const filename = req.body.filename
+    if (!filename){
+        return res.status(400).json({msg: "no filename given"})
+    }
     const parent= req.params.parentid === "root" ? null: req.params.parentid
     try {
         await queryDB("insert into items (userid,name,parent_id,type) values($1,$2,$3,$4)",[user.userid,filename,parent,"folder"])

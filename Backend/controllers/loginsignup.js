@@ -2,7 +2,6 @@ import {queryDB} from "../db/index.js"
 import jwt from "jsonwebtoken"
 import bcryptjs from "bcryptjs"
 
-// TODO: add password validation
 async function signup(req, res){
     const user = req.body;
     if (!user){
@@ -10,6 +9,12 @@ async function signup(req, res){
     }
     if (!user.username || !user.password){
         return res.status(400).json({msg: "missing values"})
+    }
+    if (user.password.length < 7){
+        return res.status(400).json({msg: "password length must be at least 7 characters"})
+    }
+    if(!(/\d/.test(user.password))){
+        return res.status(400).json({msg: "password must contain a number"})
     }
     const dbuser = await queryDB("select * from users where username = $1",[user.username]);
     if (dbuser.length > 0){
