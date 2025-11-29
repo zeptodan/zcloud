@@ -3,13 +3,16 @@ import Home from "./pages/Home"
 import Drive from "./pages/Drive"
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import Authlayout from './layouts/AuthLayout'
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home/>}/>
+      <Route element={<Authlayout/>}>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/drive/:parentid" element={<Drive/>}/>
+      </Route>
       <Route path="/login" element={<Login/>}/>
       <Route path="/signup" element={<Signup/>}/>
-      <Route path="/drive/:parentid" element={<Drive/>}/>
     </Routes>
   )
 }
