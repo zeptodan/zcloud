@@ -51,4 +51,9 @@ async function logout(req, res){
     res.clearCookie("token",{httpOnly: true,sameSite: "none", secure: isSecure})
     return res.status(200).json({msg: "User logged out"})
 }
-export {signup,login,logout};
+async function authenticate(req,res){
+    const userid = req.user.userid
+    const result = await queryDB("select username from users where userid = $1",[userid])
+    return res.status(200).json(result[0])
+}
+export {signup,login,logout, authenticate};
