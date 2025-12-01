@@ -1,11 +1,11 @@
 import api from "../utils/api";
 import type { Response,User } from "../types/types";
-async function login(): Promise<Response> {
-    const result = await api.post<Response>("/login")
+async function login(username: string,password: string): Promise<Response> {
+    const result = await api.post<Response>("/login",{username,password})
     return result.data
 }
-async function signup(): Promise<Response> {
-    const result = await api.post<Response>("/signup")
+async function signup(username: string,password: string): Promise<Response> {
+    const result = await api.post<Response>("/signup",{username,password})
     return result.data
 }
 async function logout(): Promise<Response> {
