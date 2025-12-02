@@ -15,3 +15,12 @@ export type DownloadedFile = {
     filebytes: Blob,
     filename: string
 }
+export type Notification = {
+    id: string,
+    message: string
+}
+export type NotificationState = {
+    messages: Notification[],
+    add: (id: string)=> void,
+    remove: (id: string)=> void
+}
