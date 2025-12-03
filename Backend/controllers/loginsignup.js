@@ -41,7 +41,7 @@ async function login(req, res){
     if (!isValid){
         return res.status(400).json({msg: "Invalid password"})
     }
-    const token = jwt.sign({userid: dbuser[0].id},process.env.JWT_KEY,{expiresIn: "7d"})
+    const token = jwt.sign({userid: dbuser[0].id,username: dbuser[0].username},process.env.JWT_KEY,{expiresIn: "7d"})
     const isSecure = (process.env.SECURE === "true")
     res.cookie("token",token,{httpOnly: true,sameSite: "none", secure: isSecure})
     return res.status(200).json({msg: "User logged in"})

@@ -4,16 +4,20 @@ import Drive from "./pages/Drive"
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Authlayout from './layouts/AuthLayout'
+import NotificationBox from './components/NotificationBox'
 function App() {
   return (
-    <Routes>
-      <Route element={<Authlayout/>}>
+    <>
+      <NotificationBox/>
+      <Routes>
+        <Route element={<Authlayout/>}>
+          <Route path="/drive/:parentid" element={<Drive/>}/>
+        </Route>
         <Route path="/" element={<Home/>}/>
-        <Route path="/drive/:parentid" element={<Drive/>}/>
-      </Route>
-      <Route path="/login" element={<Login/>}/>
-      <Route path="/signup" element={<Signup/>}/>
-    </Routes>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/signup" element={<Signup/>}/>
+      </Routes>
+    </>
   )
 }
 
