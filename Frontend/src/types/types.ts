@@ -2,7 +2,7 @@ export type Response = {
     msg: string
 }
 export type User = {
-    userid: string,
+    id: string,
     username: string
 }
 export type Folder = {

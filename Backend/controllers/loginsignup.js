@@ -43,17 +43,17 @@ async function login(req, res){
     }
     const token = jwt.sign({userid: dbuser[0].id,username: dbuser[0].username},process.env.JWT_KEY,{expiresIn: "7d"})
     const isSecure = (process.env.SECURE === "true")
-    res.cookie("token",token,{httpOnly: true,sameSite: process.env.SECURE? "none": "lax", secure: isSecure})
+    res.cookie("token",token,{httpOnly: true,sameSite: isSecure? "none": "lax", secure: isSecure})
     return res.status(200).json({msg: "User logged in"})
 }
 async function logout(req, res){
     const isSecure = (process.env.SECURE === "true")
-    res.clearCookie("token",{httpOnly: true,sameSite: process.env.SECURE? "none": "lax", secure: isSecure})
+    res.clearCookie("token",{httpOnly: true,sameSite: isSecure? "none": "lax", secure: isSecure})
     return res.status(200).json({msg: "User logged out"})
 }
 async function authenticate(req,res){
     const userid = req.user.userid
-    const result = await queryDB("select username from users where userid = $1",[userid])
+    const result = await queryDB("select username,id from users where id = $1",[userid])
     return res.status(200).json(result[0])
 }
 export {signup,login,logout, authenticate};

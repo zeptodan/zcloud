@@ -27,8 +27,14 @@ const Login = () => {
       add((error as AxiosError<{msg: string}>).response?.data?.msg || "Something went wrong");
     }
   }, [isError, isPending, error, add]);
-  if(!userError && !isLoading){
-    navigate("/drive/root")
+  useEffect(() => {
+  if (isSuccess) return;
+  if (!isLoading && !userError) {
+    navigate("/drive/root");
+  }
+}, [isLoading, userError, isSuccess, navigate]);
+  if(isLoading || !userError){
+    return
   }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">

@@ -6,7 +6,10 @@ function useUser(){
         queryFn: () =>{
             return auth()
         },
-        retry: false
+        retry: false,
+        staleTime: Infinity,
+        refetchOnMount: false,
+        refetchOnWindowFocus: false
     })
 }
 export default useUser

@@ -1,12 +1,7 @@
 import Footer from "../components/Footer";
-import { Link, redirect } from "react-router";
-import useUser from "../hooks/useUser";
+import { Link } from "react-router";
 
 const Home = () => {
-    const { isLoading,isError} = useUser()
-    if (!isLoading && !isError){
-        redirect("/drive")
-    }
   return (
     <div className="w-screen h-screen flex flex-col">
       <main className="flex flex-col flex-1 items-center justify-center px-4 text-center">
