@@ -1,1 +1,12 @@
-@import "tailwindcss"
+@import "tailwindcss";
+
+@theme {
+    --color-bg : #050814
+    --font-sans: "Inter";
+}
+
+@layer base {
+    body {
+        @apply font-sans
+    }
+}
