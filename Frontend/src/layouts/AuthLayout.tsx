@@ -1,21 +1,34 @@
-import { Outlet, redirect } from "react-router";
+import { Outlet, useNavigate } from "react-router";
+import { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import useUser from "../hooks/useUser";
-const Authlayout = () => {
-    const { isLoading,isError} = useUser()
-    if (isLoading){
-        return
+
+const AuthLayout = () => {
+  const { isLoading, isError } = useUser();
+  const navigate = useNavigate();
+
+  // Handle redirect on auth failure
+  useEffect(() => {
+    if (!isLoading && isError) {
+      navigate("/login");
     }
-    if(isError){
-        redirect("/login")
-    }
-    return (
-        <>
-            <Navbar/>
-            <Outlet/>
-            <Footer/>
-        </>
-    )
-}
-export default Authlayout
+  }, [isLoading, isError, navigate]);
+
+  if (isLoading) return null;
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+
+      {/* Page content grows to fill space */}
+      <main className="flex-1">
+        <Outlet />
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default AuthLayout;
