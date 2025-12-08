@@ -11,7 +11,7 @@ async function sendFile(parentid: string,file: File) : Promise<Response>{
     return result.data
 }
 async function getFile(id: string) : Promise<DownloadedFile>{
-    const result = await api.get(`/files/${id}`,{ responseType: "blob" })
+    const result = await api.get(`/files/${id}`,{ responseType: "arraybuffer" })
     const disposition = result.headers["content-disposition"]
     const matches = disposition?.match(/filename="(.+)"/);
     const filename = matches ? matches[1] : "file";

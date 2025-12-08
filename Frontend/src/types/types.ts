@@ -6,14 +6,14 @@ export type User = {
     username: string
 }
 export type Folder = {
-    id: number,
+    id: string,
     name: string,
     size: number,
     uploaded: string,
     type: string
 }
 export type DownloadedFile = {
-    filebytes: Blob,
+    filebytes: ArrayBuffer,
     filename: string
 }
 export type Notification = {

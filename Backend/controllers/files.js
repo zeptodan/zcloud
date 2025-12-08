@@ -7,10 +7,16 @@ async function getFile(req,res){
     }
     try {
         const result =await queryDB("select id,name,size,uploaded,type,filebytes from items where id = $1 and userid = $2",[id,userid])
-        res.set({
-            "Content-Type": "application/octet-stream",
-            "Content-Disposition": `attachment; filename="${result[0].name}"`,
-        });
+        if (result.length === 0) {
+            return res.status(404).json({ msg: "file not found" });
+        }
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.setHeader("Access-Control-Expose-Headers", "Content-Disposition");
+        res.setHeader("Content-Type", "application/octet-stream");
+        res.setHeader(
+            "Content-Disposition",
+            `attachment; filename="${result[0].name}"`
+        );
         return res.status(200).send(result[0].filebytes)
     } catch (error) {
         console.log(error)
