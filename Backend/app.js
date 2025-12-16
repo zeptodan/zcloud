@@ -1,6 +1,6 @@
 import "dotenv/config";
 import express from "express";
-import limiter from "express-rate-limiter"
+import limiter from "express-rate-limit"
 import helmet from "helmet"
 import cors from "cors"
 import HomeRouter from "./routes/index.js";
