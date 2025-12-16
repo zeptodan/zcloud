@@ -22,7 +22,7 @@ app.use(cors({
     origin: 'https://zcloud.zeptodan.app',
     credentials: true 
 }))
-app.set('trust proxy', true);
+app.set('trust proxy', '127.0.0.1');
 app.use(limiter({
     windowMs: 15 * 60 * 1000,
     max: 100,
