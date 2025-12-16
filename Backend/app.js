@@ -16,10 +16,16 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(helmet());
-// app.use(cors())
-// app.use(limiter(
-
-// ))
+app.use(cors({
+    origin: 'https://zcloud.zeptodan.app',
+    credentials: true 
+}))
+app.set('trust proxy', true);
+app.use(limiter({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    message: "Too many requests from this IP, please try again later."
+}))
 
 app.use("/api",HomeRouter);
 app.use("/api",authorization,itemrouter);
