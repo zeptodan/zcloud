@@ -55,7 +55,7 @@ const Drive = () => {
 
       {/* Items Grid */}
       <div className="flex flex-col divide-y rounded-xl overflow-hidden bg-white shadow-md">
-        {data?.map((folder) => (
+        {Array.isArray(data) && data?.map((folder) => (
           <Item key={folder.id} {...folder} />
         ))}
       </div>
